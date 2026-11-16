@@ -1,17 +1,22 @@
-# Vigie 13 — première version PWA
+# Vigie 13 — PWA et Worker Cloudflare
 
-## Ce qui est inclus
-- Interface responsive pour mobile et ordinateur.
-- Manifest PWA et service worker (cache de base hors ligne).
-- Filtres par catégorie.
-- Liens directs vers les sources officielles.
-- Demande de permission de notifications navigateur.
+## Fonctionnalités de cette branche
+- Interface responsive installable (PWA), filtres et accès aux sources institutionnelles.
+- Endpoint Cloudflare Worker `/api/rtm-alerts` qui interroge le jeu de données ouvert `ol-perturbation-la-mobilite` de la Métropole Aix-Marseille-Provence.
+- Rafraîchissement de l'affichage toutes les 5 minutes.
+- Service worker qui ne met pas en cache les réponses de l'API afin d'éviter d'afficher des perturbations périmées.
 
-## Important : limites de cette version
-Les cartes sont des exemples de présentation et ne constituent pas des données en direct. Aucun flux de données officiel n'est encore raccordé. Le bouton notifications demande une permission navigateur mais aucun serveur d'envoi push n'est configuré. Il faut connecter et tester les sources (RTM, TER/SNCF, Bison Futé, Météo-France, préfecture, aéroport) et un backend push avant toute mise en production.
+## Déploiement Cloudflare Workers
+Le fichier `wrangler.jsonc` configure un Worker nommé `vigie13`, sert les fichiers statiques depuis la racine et route `/api/*` vers le Worker. Déploiement depuis un environnement disposant de Wrangler :
+```sh
+npx wrangler deploy
+``
+Avant le déploiement, vérifier dans Cloudflare que le Worker existant porte bien le nom `vigie13` et que le dépôt est relié au bon environnement. Ne pas déployer sur un Worker différent sans vérifier le domaine public.
 
-## Hébergement gratuit
-Le projet est prévu pour Cloudflare Pages en HTTPS. Importer ce dossier dans un dépôt GitHub, puis créer un projet Pages relié au dépôt avec le répertoire racine `vigie13` (ou placer les fichiers à la racine du dépôt). Aucun domaine personnalisé n'est nécessaire : l'adresse `*.pages.dev` est fournie.
+## Sources et limites
+Le flux intégré concerne les perturbations de mobilité publiées par la Métropole Aix-Marseille-Provence. Il ne représente pas à lui seul toutes les informations RTM, TER/SNCF, circulation routière, météo, aéroport ou préfecture. Les autres rubriques restent des liens vers les sources officielles.
+La réponse du flux est normalisée côté Worker et les dates de validité sont prises en compte lorsqu'elles sont présentes. Une indisponibilité de la source est affichée comme telle : aucune fausse alerte n'est générée.
 
-## Notifications iPhone
-Sur iOS/iPadOS 16.4+, l'utilisateur doit ajouter la PWA à l'écran d'accueil puis accepter les notifications. Le serveur doit ensuite gérer les abonnements Push API et envoyer les messages. Ne pas confondre l'autorisation locale et la réception effective d'alertes.
+## Notifications
+Le bouton de notification demande uniquement l'autorisation du navigateur. Les notifications push à distance ne sont pas encore actives : elles nécessitent la gestion des abonnements Push API et une clé VAPID conservée comme secret Cloudflare. Ne pas annoncer la réception d'alertes push tant que cette infrastructure n'est pas configurée et testée.
+Sur iOS/iPadOS 16.4+, la PWA doit être ajoutée à l'écran d'accueil avant de pouvoir recevoir des notifications web push.
