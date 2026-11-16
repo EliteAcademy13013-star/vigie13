@@ -144,13 +144,13 @@ async function getPrefectureNews() {
   });
   if (!response.ok) throw new Error("Flux RSS préfecture HTTP " + response.status);
   const xml = await response.text();
-  const items = [...xml.matchAll(/<(item|entry)\\b[^>]*>([\\s\\S]*?)<\\/\\1>/gi)].slice(0,12).map((match,index) => {
+  const items = [...xml.matchAll(/<(item|entry)\b[^>]*>([\s\S]*?)<\/\1>/gi)].slice(0,12).map((match,index) => {
     const block = match[2];
     const get = tag => {
-      const found = block.match(new RegExp("<" + tag + "\\\\b[^>]*>([\\\\s\\\\S]*?)<\\\\/" + tag + ">", "i"));
-      return found ? decodeXml(found[1].replace(/<[^>]+>/g," ").replace(/\\s+/g," ").trim()) : "";
+      const found = block.match(new RegExp("<" + tag + "[^>]*>([\\s\\S]*?)</" + tag + ">", "i"));
+      return found ? decodeXml(found[1].replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim()) : "";
     };
-    const linkTag = block.match(/<link\\b[^>]*href=["']([^"']+)["'][^>]*\\/?\\s*>/i);
+    const linkTag = block.match(/<link\b[^>]*href=["']([^"']+)["'][^>]*\/?\s*>/i);
     const link = linkTag ? linkTag[1] : get("link");
     return {id:String(index),title:get("title") || "Actualité de la préfecture",message:get("description") || get("summary") || get("content"),publishedAt:get("pubDate") || get("published") || get("updated"),url:link ? new URL(link,"https://www.bouches-du-rhone.gouv.fr").href : "https://www.bouches-du-rhone.gouv.fr/Actualites",category:"Préfecture"};
   }).filter(item => item.title);
