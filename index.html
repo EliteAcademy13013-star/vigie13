@@ -186,7 +186,7 @@ footer{max-width:1180px}
   <section class="panel" style="margin-top:12px"><h3>Sources officielles rapides</h3><p>Accès direct aux organismes qui publient les informations de référence.</p><div class="sources"><a href="https://www.rtm.fr/" target="_blank" rel="noopener">RTM</a><a href="https://www.sncf.com/fr/itineraire-reservation/info-trafic" target="_blank" rel="noopener">SNCF</a><a href="https://www.bison-fute.gouv.fr/" target="_blank" rel="noopener">Bison Futé</a><a href="https://vigilance.meteofrance.fr/fr" target="_blank" rel="noopener">Météo-France</a><a href="https://fr-alert.gouv.fr/" target="_blank" rel="noopener">FR-Alert</a><a href="https://www.bouches-du-rhone.gouv.fr/" target="_blank" rel="noopener">Préfecture 13</a></div></section>
 </main><footer>Vigie 13 · Projet indépendant. Les alertes d'urgence officielles restent celles des autorités. Vérifiez toujours l'heure de mise à jour et la source d'une information.</footer>
 <script>
-  const esc=s=>String(s??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]));
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const feedState=document.getElementById('feedState'),liveAlerts=document.getElementById('liveAlerts'),feedUpdated=document.getElementById('feedUpdated'),liveEmpty=document.getElementById('liveEmpty');
 
   const fmtTime=new Intl.DateTimeFormat('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
