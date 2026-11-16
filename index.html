@@ -10,10 +10,54 @@
     :root{--navy:#10243a;--blue:#1769aa;--ink:#172638;--muted:#637386;--bg:#f3f6fa;--line:#e2e8f0;--white:#fff;--red:#b42318;--amber:#a15c00;--green:#14734a}
     *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}header{background:linear-gradient(135deg,#10243a,#194c70);color:white;padding:22px max(18px,calc((100vw - 980px)/2));padding-bottom:26px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;gap:12px;align-items:center}.logo{width:46px;height:46px;border-radius:14px;background:#fff;color:var(--navy);display:grid;place-items:center;font-size:25px;font-weight:800}.brand h1{margin:0;font-size:22px;letter-spacing:.2px}.brand p{margin:0;color:#c9d8e7;font-size:12px}.live{border:1px solid #82b7d9;color:#d8f0ff;border-radius:99px;padding:5px 10px;font-size:11px;white-space:nowrap}.intro{margin-top:22px;max-width:700px}.intro h2{font-size:25px;line-height:1.2;margin:0 0 7px}.intro p{color:#d1dfeb;margin:0}.wrap{max-width:980px;margin:auto;padding:18px}.notice{background:#fff8e8;border:1px solid #f0d7a3;border-radius:13px;padding:12px 14px;color:#714b0c;font-size:13px;margin-bottom:16px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.filter{border:1px solid var(--line);background:white;border-radius:99px;padding:8px 13px;color:#35465a;font-weight:600;font-size:13px;cursor:pointer}.filter.active{background:var(--navy);color:white;border-color:var(--navy)}.section-title{display:flex;justify-content:space-between;align-items:end;margin:20px 0 10px}.section-title h3{margin:0;font-size:18px}.section-title span{font-size:12px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:15px;min-height:145px;box-shadow:0 2px 8px #10243a08}.card-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.tag{font-size:11px;font-weight:700;letter-spacing:.2px;color:#526276}.status{font-size:10px;font-weight:800;border-radius:99px;padding:4px 8px;background:#edf1f5;color:#526276}.status.demo{background:#fff1d6;color:#895500}.card h4{font-size:16px;margin:12px 0 5px}.card p{font-size:13px;color:#5b6b7d;margin:0 0 12px}.card a,.source a{color:#155f9c;text-decoration:none;font-weight:650;font-size:12px}.card a:hover,.source a:hover{text-decoration:underline}.tools{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:18px}.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:16px}.panel h3{margin:0 0 6px;font-size:16px}.panel p{margin:0;color:var(--muted);font-size:13px}.btn{border:0;border-radius:11px;background:var(--blue);color:white;font-weight:700;padding:11px 14px;margin-top:13px;cursor:pointer}.btn.secondary{background:#eaf1f7;color:#164d77}.sources{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.sources a{background:#f0f5fa;padding:8px 10px;border-radius:9px;color:#24577e;text-decoration:none;font-size:12px;font-weight:650}footer{max-width:980px;margin:0 auto;padding:8px 18px 28px;color:#718095;font-size:11px}.empty{display:none;background:white;padding:22px;border-radius:14px;color:var(--muted);text-align:center}.small{font-size:11px;color:var(--muted);margin-top:8px}.feed-state{font-size:12px;color:var(--muted);margin:0 0 10px}.feed-state.error{color:var(--red)}.status.live-data{background:#e7f5ee;color:#12613e}.alert-card{border-left:4px solid var(--amber)}.alert-card.high{border-left-color:var(--red)}.alert-card h4{margin-top:8px}.alert-meta{font-size:11px!important;color:var(--muted)!important;margin-top:8px!important}
     @media(max-width:620px){.grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.intro h2{font-size:22px}.wrap{padding:14px}header{padding:18px 16px 23px}.live{font-size:10px}}
+
+    /* Identité visuelle renforcée */
+    body{background:#f2f5f9;color:#18283a;letter-spacing:.005em}
+    header{position:relative;overflow:hidden;background:linear-gradient(118deg,#0b1d32 0%,#123958 58%,#17618a 100%);padding-top:25px;padding-bottom:25px}
+    header:after{content:"";position:absolute;width:360px;height:360px;border:1px solid #ffffff18;border-radius:50%;right:-115px;top:-190px;box-shadow:0 0 0 34px #ffffff08,0 0 0 70px #ffffff06;pointer-events:none}
+    .top,.intro,.hero-foot{position:relative;z-index:1}
+    .logo{position:relative;border-radius:13px;background:#f5f9fc;color:#102b45;font-size:25px;box-shadow:0 5px 18px #06152640}
+    .logo span{position:absolute;font-size:9px;right:5px;bottom:5px;color:#1674a8}
+    .brand h1{font-size:23px;letter-spacing:.3px}
+    .brand p{font-size:10px;letter-spacing:1.15px;font-weight:700;color:#b8d0e2}
+    .live{display:flex;align-items:center;gap:7px;border-color:#8dbbd280;background:#ffffff0d;padding:7px 11px;font-size:10px;letter-spacing:.8px;font-weight:800}
+    .live-dot{width:7px;height:7px;background:#5ed6a1;border-radius:50%;box-shadow:0 0 0 4px #5ed6a125}
+    .intro{margin-top:30px;max-width:690px}
+    .eyebrow{font-size:10px;letter-spacing:1.5px;font-weight:800;color:#8fc9e9;margin-bottom:10px}
+    .intro h2{font-size:clamp(27px,4vw,37px);line-height:1.12;letter-spacing:-.8px;max-width:620px;margin-bottom:11px}
+    .intro p{font-size:14px;line-height:1.65;max-width:590px;color:#d0e0ec}
+    .hero-foot{display:flex;gap:9px 22px;flex-wrap:wrap;margin-top:25px;padding-top:13px;border-top:1px solid #ffffff25;color:#c0d5e4;font-size:10px;font-weight:600}
+    .wrap{max-width:1040px;padding-top:23px}
+    .notice{background:#f8fbfe;border:1px solid #d8e4ef;border-left:4px solid #397da8;border-radius:10px;color:#43596d;padding:13px 15px;line-height:1.55}
+    .section-title{margin:25px 0 11px;align-items:center}
+    .section-title h3{font-size:19px;letter-spacing:-.25px;color:#142b42}
+    .section-title span{font-size:11px;font-weight:650}
+    .feed-state{display:flex;align-items:center;gap:7px;font-size:11px;margin-bottom:12px}
+    .grid{gap:14px}
+    .card,.panel{border:1px solid #dfe7ef;border-radius:13px;box-shadow:0 3px 12px #19344c09;transition:transform .16s ease,box-shadow .16s ease}
+    .card{padding:17px;min-height:150px}
+    .card:hover,.panel:hover{box-shadow:0 7px 20px #19344c12;transform:translateY(-1px)}
+    .tag{font-size:10px;letter-spacing:.8px}
+    .status{letter-spacing:.45px;font-size:9px}
+    .status.live-data{background:#e7f5ee;color:#12613e}
+    .alert-card{border-left-width:4px;background:linear-gradient(110deg,#fff 0%,#fbfdff 100%)}
+    .alert-card.high{background:linear-gradient(110deg,#fff 0%,#fffafa 100%)}
+    .alert-card h4{font-size:16px;line-height:1.35;color:#172d43}
+    .alert-card p{line-height:1.55}
+    .alert-meta{padding-top:8px;border-top:1px solid #edf1f5}
+    .card a{display:inline-flex;align-items:center;gap:5px;margin-top:2px;font-size:11px}
+    .filter{border-radius:8px;padding:8px 12px;font-size:12px}
+    .filter.active{box-shadow:0 2px 7px #10243a25}
+    .panel{padding:19px}
+    .panel h3{color:#172d43;font-size:16px}
+    .btn{border-radius:8px;padding:11px 15px}
+    .sources a{border:1px solid #e2eaf1;border-radius:8px;background:#f7fafd}
+    footer{max-width:1040px;border-top:1px solid #e0e7ee;padding-top:15px;line-height:1.7}
+    @media(max-width:620px){header{padding:18px 16px 20px}.intro{margin-top:25px}.intro h2{font-size:28px}.hero-foot{font-size:9px;gap:7px 14px}.live{font-size:9px;padding:6px 8px}.wrap{padding:13px}.card:hover,.panel:hover{transform:none}}
   </style>
 </head>
 <body>
-<header><div class="top"><div class="brand"><div class="logo">V</div><div><h1>Vigie 13</h1><p>Veille territoriale · Bouches-du-Rhône</p></div></div><span class="live">TABLEAU DE BORD</span></div><div class="intro"><h2>Les informations utiles, au bon moment.</h2><p>Transports, circulation, météo et alertes officielles sur tout le département.</p></div></header>
+<header><div class="top"><div class="brand"><div class="logo">V<span>13</span></div><div><h1>Vigie 13</h1><p>VEILLE TERRITORIALE · BOUCHES-DU-RHÔNE</p></div></div><span class="live"><span class="live-dot"></span> TABLEAU DE VEILLE</span></div><div class="intro"><div class="eyebrow">INFORMATION LOCALE · SOURCES IDENTIFIÉES</div><h2>Gardez un temps d’avance sur les perturbations.</h2><p>Un point de situation pour suivre les transports, la circulation et les alertes utiles dans les Bouches-du-Rhône.</p></div><div class="hero-foot"><span>Actualisation automatique des données de mobilité</span><span>Un service indépendant d’information</span></div></header>
 <main class="wrap">
   <div class="notice"><strong>Transparence des sources :</strong> les alertes de mobilité affichées ci-dessous sont récupérées automatiquement depuis les données ouvertes de la Métropole Aix-Marseille-Provence. Les autres rubriques donnent accès aux sites officiels : elles ne constituent pas encore des flux intégrés à Vigie 13.</div>
   <div class="section-title"><h3>Perturbations de mobilité</h3><span id="feedUpdated">Chargement…</span></div><p class="feed-state" id="feedState" aria-live="polite">Chargement des dernières données de mobilité…</p><section class="grid" id="liveAlerts" aria-live="polite"></section><div class="empty" id="liveEmpty" style="display:none">Aucune perturbation active remontée par la source de mobilité au dernier contrôle.</div><div class="section-title"><h3>Autres sources officielles</h3><span id="today"></span></div>
