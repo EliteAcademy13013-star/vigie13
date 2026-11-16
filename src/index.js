@@ -1,5 +1,5 @@
 const DATASET_URL = "https://data.ampmetropole.fr/api/explore/v2.1/catalog/datasets/ol-perturbation-la-mobilite/records?limit=100";
-const GTFS_RT_URL = "https://www.data.gouv.fr/api/1/datasets/r/834199c7-2e4f-4ca5-8675-a78894601a77";
+const GTFS_RT_URL = "https://api-mobilite.rbgl.fr/api/v1/MAMP/getServiceAlerts";
 const CACHE_TTL = 60;
 
 function json(data, status = 200) {
@@ -73,8 +73,12 @@ function readFields(bytes) {
 const values = (fields, n, wire) => fields.filter(f => f[0] === n && (wire === undefined || f[1] === wire)).map(f => f[2]);
 const str = bytes => new TextDecoder().decode(bytes);
 function translated(bytes) {
-  const translations = readFields(bytes).filter(f => f[0] === 1 && f[1] === 2).map(f => str(f[2]));
-  return translations[0] || "";
+  const entries = values(readFields(bytes), 1, 2);
+  const translations = entries.map(entry => {
+    const fields = readFields(entry);
+    return { text: values(fields, 1, 2).map(str)[0] || "", language: values(fields, 2, 2).map(str)[0] || "" };
+  }).filter(item => item.text);
+  return (translations.find(item => item.language.toLowerCase().startsWith("fr")) || translations[0] || {}).text || "";
 }
 function decodeTimeRange(bytes) {
   const f = readFields(bytes);
@@ -143,6 +147,17 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === "/api/health") {
       return json({ ok: true, service: "vigie13-worker", checkedAt: new Date().toISOString() });
+    }
+    if (url.pathname === "/api/weather") {
+      try {
+        const endpoint = "https://api.open-meteo.com/v1/forecast?latitude=43.2965&longitude=5.3698&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&hourly=precipitation_probability,temperature_2m&forecast_days=1&timezone=Europe%2FParis";
+        const upstream = await fetch(endpoint, { headers: { "accept": "application/json" }, cf: { cacheTtl: 300, cacheEverything: true } });
+        if (!upstream.ok) return json({ ok: false, message: "Source météo HTTP " + upstream.status }, 502);
+        const data = await upstream.json();
+        return json({ ok: true, source: "Open-Meteo · coordonnées de Marseille", fetchedAt: new Date().toISOString(), data });
+      } catch (error) {
+        return json({ ok: false, message: "Météo momentanément indisponible", detail: String(error && error.message || error) }, 502);
+      }
     }
     if (url.pathname === "/api/rtm-alerts") {
       try {
