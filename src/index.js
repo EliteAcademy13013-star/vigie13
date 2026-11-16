@@ -132,6 +132,36 @@ async function getTransportAlerts() {
   return alerts.filter(a => isActive(a, now));
 }
 
+
+function decodeXml(value) {
+  return String(value || "").replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1").replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'");
+}
+async function getPrefectureNews() {
+  const base = "https://www.bouches-du-rhone.gouv.fr";
+  const directory = await fetch(base + "/syndication/listexport", { headers: { "user-agent": "Vigie13/1.0", "accept": "text/html" }, cf: { cacheTtl: 900, cacheEverything: true } });
+  if (!directory.ok) throw new Error("Répertoire RSS préfecture HTTP " + directory.status);
+  const page = await directory.text();
+  const anchors = [...page.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)];
+  const candidates = anchors.map(match => ({url:new URL(match[1],base).href,label:decodeXml(match[2].replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim())}));
+  const feed = candidates.find(item => /flux rss.*actualit|actualit[eé]s.*flux rss/i.test(item.label)) ||
+    candidates.find(item => /actualit[eé]s/i.test(item.label) && /rss|syndication/i.test(item.url));
+  if (!feed) throw new Error("Flux RSS Actualités introuvable dans le répertoire officiel");
+  const response = await fetch(feed.url, { headers: { "user-agent": "Vigie13/1.0", "accept": "application/rss+xml, application/atom+xml, application/xml, text/xml" }, cf: { cacheTtl: 900, cacheEverything: true } });
+  if (!response.ok) throw new Error("Flux RSS préfecture HTTP " + response.status);
+  const xml = await response.text();
+  const items = [...xml.matchAll(/<(item|entry)\b[^>]*>([\s\S]*?)<\/\1>/gi)].slice(0,12).map((match,index) => {
+    const block = match[2];
+    const get = tag => {
+      const found = block.match(new RegExp("<" + tag + "\\b[^>]*>([\\s\\S]*?)<\\/" + tag + ">", "i"));
+      return found ? decodeXml(found[1].replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim()) : "";
+    };
+    const linkTag = block.match(/<link\b[^>]*href=["']([^"']+)["'][^>]*\/?\s*>/i);
+    const link = linkTag ? linkTag[1] : get("link");
+    return {id:String(index),title:get("title") || "Actualité de la préfecture",message:get("description") || get("summary") || get("content"),publishedAt:get("pubDate") || get("published") || get("updated"),url:link ? new URL(link,base).href : base,category:"Préfecture"};
+  }).filter(item => item.title);
+  return items;
+}
+
 async function getRailAlerts() {
   const endpoint = "https://proxy.transport.data.gouv.fr/resource/sncf-gtfs-rt-service-alerts";
   const response = await fetch(endpoint, {
@@ -174,6 +204,14 @@ export default {
         return json({ ok: true, source: "Open-Meteo · coordonnées de Marseille", fetchedAt: new Date().toISOString(), data });
       } catch (error) {
         return json({ ok: false, message: "Météo momentanément indisponible", detail: String(error && error.message || error) }, 502);
+      }
+    }
+    if (url.pathname === "/api/prefecture-news") {
+      try {
+        const items = await getPrefectureNews();
+        return json({ ok: true, source: "Préfecture des Bouches-du-Rhône · flux RSS officiel", fetchedAt: new Date().toISOString(), count: items.length, items });
+      } catch (error) {
+        return json({ ok: false, message: "Actualités de la préfecture momentanément indisponibles", detail: String(error && error.message || error) }, 502);
       }
     }
     if (url.pathname === "/api/rail-alerts") {
