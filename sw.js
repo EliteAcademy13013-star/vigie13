@@ -1,4 +1,4 @@
-const CACHE='vigie13-shell-v3';
+const CACHE='vigie13-shell-v4';
 const CORE=['/','/index.html','/manifest.webmanifest','/icon.svg','/icon-192.png','/icon-512.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE))));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{for(const key of await caches.keys()){if(key.startsWith('vigie13-shell-')&&key!==CACHE)await caches.delete(key)}await self.clients.claim()})()));
