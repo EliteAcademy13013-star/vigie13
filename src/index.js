@@ -131,6 +131,23 @@ async function getTransportAlerts() {
   const now = Date.now();
   return alerts.filter(a => isActive(a, now));
 }
+
+async function getRailAlerts() {
+  const endpoint = "https://proxy.transport.data.gouv.fr/resource/sncf-gtfs-rt-service-alerts";
+  const response = await fetch(endpoint, {
+    headers: { "accept": "application/octet-stream, application/x-protobuf, */*", "user-agent": "Vigie13/1.0" },
+    cf: { cacheTtl: 60, cacheEverything: true }
+  });
+  if (!response.ok) throw new Error("Flux SNCF HTTP " + response.status);
+  const type = response.headers.get("content-type") || "";
+  if (type.includes("text/html") || type.includes("application/json")) throw new Error("La source SNCF n'a pas renvoyé de fichier protobuf");
+  const localTerms = /marseille|aix[- ]en[- ]provence|arles|aubagne|salon[- ]de[- ]provence|miramas|istres|martigues|vitrolles|marignane|cassis|la ciotat|tarascon|port[- ]de[- ]bouc|bouches[- ]du[- ]rh[oô]ne|ter sud|provence[- ]alpes[- ]c[oô]te d'azur|paca/i;
+  return decodeGtfsAlerts(await response.arrayBuffer()).filter(alert => {
+    const text = [alert.title, alert.message, alert.lines].join(" ");
+    return localTerms.test(text) && isActive(alert, Date.now());
+  }).map(alert => ({...alert, category:"TER / SNCF", source:"SNCF Open Data"}));
+}
+
 async function getLegacyAlerts() {
   const upstream = await fetch(DATASET_URL, {
     headers: { "accept": "application/json", "user-agent": "Vigie13/1.0 (public mobility information)" },
@@ -157,6 +174,14 @@ export default {
         return json({ ok: true, source: "Open-Meteo · coordonnées de Marseille", fetchedAt: new Date().toISOString(), data });
       } catch (error) {
         return json({ ok: false, message: "Météo momentanément indisponible", detail: String(error && error.message || error) }, 502);
+      }
+    }
+    if (url.pathname === "/api/rail-alerts") {
+      try {
+        const alerts = await getRailAlerts();
+        return json({ ok: true, source: "SNCF Open Data · GTFS-RT Service Alerts", fetchedAt: new Date().toISOString(), count: alerts.length, alerts });
+      } catch (error) {
+        return json({ ok: false, message: "Flux ferroviaire momentanément indisponible", detail: String(error && error.message || error) }, 502);
       }
     }
     if (url.pathname === "/api/rtm-alerts") {
