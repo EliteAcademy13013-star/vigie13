@@ -1,5 +1,5 @@
 const DATASET_URL = "https://data.ampmetropole.fr/api/explore/v2.1/catalog/datasets/ol-perturbation-la-mobilite/records?limit=100";
-const GTFS_RT_URL = "https://api-mobilite.rbgl.fr/api/v1/MAMP/getServiceAlerts";
+const GTFS_RT_URL = "https://api-mobilite.rbgl.fr/api/v1/mamp/getServiceAlerts";
 const CACHE_TTL = 60;
 
 function json(data, status = 200) {
