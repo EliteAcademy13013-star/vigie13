@@ -1,269 +1,198 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#10243a"><meta name="description" content="Vigie 13 — veille des perturbations dans les Bouches-du-Rhône">
-  <link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/icon-192.png">
-  <title>Vigie 13 — Veille territoriale</title>
-  <style>
-    :root{--navy:#10243a;--blue:#1769aa;--ink:#172638;--muted:#637386;--bg:#f3f6fa;--line:#e2e8f0;--white:#fff;--red:#b42318;--amber:#a15c00;--green:#14734a}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}header{background:linear-gradient(135deg,#10243a,#194c70);color:white;padding:22px max(18px,calc((100vw - 980px)/2));padding-bottom:26px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;gap:12px;align-items:center}.logo{width:46px;height:46px;border-radius:14px;background:#fff;color:var(--navy);display:grid;place-items:center;font-size:25px;font-weight:800}.brand h1{margin:0;font-size:22px;letter-spacing:.2px}.brand p{margin:0;color:#c9d8e7;font-size:12px}.live{border:1px solid #82b7d9;color:#d8f0ff;border-radius:99px;padding:5px 10px;font-size:11px;white-space:nowrap}.intro{margin-top:22px;max-width:700px}.intro h2{font-size:25px;line-height:1.2;margin:0 0 7px}.intro p{color:#d1dfeb;margin:0}.wrap{max-width:980px;margin:auto;padding:18px}.notice{background:#fff8e8;border:1px solid #f0d7a3;border-radius:13px;padding:12px 14px;color:#714b0c;font-size:13px;margin-bottom:16px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.filter{border:1px solid var(--line);background:white;border-radius:99px;padding:8px 13px;color:#35465a;font-weight:600;font-size:13px;cursor:pointer}.filter.active{background:var(--navy);color:white;border-color:var(--navy)}.section-title{display:flex;justify-content:space-between;align-items:end;margin:20px 0 10px}.section-title h3{margin:0;font-size:18px}.section-title span{font-size:12px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:15px;min-height:145px;box-shadow:0 2px 8px #10243a08}.card-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.tag{font-size:11px;font-weight:700;letter-spacing:.2px;color:#526276}.status{font-size:10px;font-weight:800;border-radius:99px;padding:4px 8px;background:#edf1f5;color:#526276}.status.demo{background:#fff1d6;color:#895500}.card h4{font-size:16px;margin:12px 0 5px}.card p{font-size:13px;color:#5b6b7d;margin:0 0 12px}.card a,.source a{color:#155f9c;text-decoration:none;font-weight:650;font-size:12px}.card a:hover,.source a:hover{text-decoration:underline}.tools{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:18px}.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:16px}.panel h3{margin:0 0 6px;font-size:16px}.panel p{margin:0;color:var(--muted);font-size:13px}.btn{border:0;border-radius:11px;background:var(--blue);color:white;font-weight:700;padding:11px 14px;margin-top:13px;cursor:pointer}.btn.secondary{background:#eaf1f7;color:#164d77}.sources{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.sources a{background:#f0f5fa;padding:8px 10px;border-radius:9px;color:#24577e;text-decoration:none;font-size:12px;font-weight:650}footer{max-width:980px;margin:0 auto;padding:8px 18px 28px;color:#718095;font-size:11px}.empty{display:none;background:white;padding:22px;border-radius:14px;color:var(--muted);text-align:center}.small{font-size:11px;color:var(--muted);margin-top:8px}.feed-state{font-size:12px;color:var(--muted);margin:0 0 10px}.feed-state.error{color:var(--red)}.status.live-data{background:#e7f5ee;color:#12613e}.alert-card{border-left:4px solid var(--amber)}.alert-card.high{border-left-color:var(--red)}.alert-card h4{margin-top:8px}.alert-meta{font-size:11px!important;color:var(--muted)!important;margin-top:8px!important}
-    @media(max-width:620px){.grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.intro h2{font-size:22px}.wrap{padding:14px}header{padding:18px 16px 23px}.live{font-size:10px}}
-
-    /* Identité visuelle renforcée */
-    body{background:#f2f5f9;color:#18283a;letter-spacing:.005em}
-    header{position:relative;overflow:hidden;background:linear-gradient(118deg,#0b1d32 0%,#123958 58%,#17618a 100%);padding-top:25px;padding-bottom:25px}
-    header:after{content:"";position:absolute;width:360px;height:360px;border:1px solid #ffffff18;border-radius:50%;right:-115px;top:-190px;box-shadow:0 0 0 34px #ffffff08,0 0 0 70px #ffffff06;pointer-events:none}
-    .top,.intro,.hero-foot{position:relative;z-index:1}
-    .logo{position:relative;border-radius:13px;background:#f5f9fc;color:#102b45;font-size:25px;box-shadow:0 5px 18px #06152640}
-    .logo span{position:absolute;font-size:9px;right:5px;bottom:5px;color:#1674a8}
-    .brand h1{font-size:23px;letter-spacing:.3px}
-    .brand p{font-size:10px;letter-spacing:1.15px;font-weight:700;color:#b8d0e2}
-    .live{display:flex;align-items:center;gap:7px;border-color:#8dbbd280;background:#ffffff0d;padding:7px 11px;font-size:10px;letter-spacing:.8px;font-weight:800}
-    .live-dot{width:7px;height:7px;background:#5ed6a1;border-radius:50%;box-shadow:0 0 0 4px #5ed6a125}
-    .intro{margin-top:30px;max-width:690px}
-    .eyebrow{font-size:10px;letter-spacing:1.5px;font-weight:800;color:#8fc9e9;margin-bottom:10px}
-    .intro h2{font-size:clamp(27px,4vw,37px);line-height:1.12;letter-spacing:-.8px;max-width:620px;margin-bottom:11px}
-    .intro p{font-size:14px;line-height:1.65;max-width:590px;color:#d0e0ec}
-    .hero-foot{display:flex;gap:9px 22px;flex-wrap:wrap;margin-top:25px;padding-top:13px;border-top:1px solid #ffffff25;color:#c0d5e4;font-size:10px;font-weight:600}
-    .wrap{max-width:1040px;padding-top:23px}
-    .notice{background:#f8fbfe;border:1px solid #d8e4ef;border-left:4px solid #397da8;border-radius:10px;color:#43596d;padding:13px 15px;line-height:1.55}
-    .section-title{margin:25px 0 11px;align-items:center}
-    .section-title h3{font-size:19px;letter-spacing:-.25px;color:#142b42}
-    .section-title span{font-size:11px;font-weight:650}
-    .feed-state{display:flex;align-items:center;gap:7px;font-size:11px;margin-bottom:12px}
-    .grid{gap:14px}
-    .card,.panel{border:1px solid #dfe7ef;border-radius:13px;box-shadow:0 3px 12px #19344c09;transition:transform .16s ease,box-shadow .16s ease}
-    .card{padding:17px;min-height:150px}
-    .card:hover,.panel:hover{box-shadow:0 7px 20px #19344c12;transform:translateY(-1px)}
-    .tag{font-size:10px;letter-spacing:.8px}
-    .status{letter-spacing:.45px;font-size:9px}
-    .status.live-data{background:#e7f5ee;color:#12613e}
-    .alert-card{border-left-width:4px;background:linear-gradient(110deg,#fff 0%,#fbfdff 100%)}
-    .alert-card.high{background:linear-gradient(110deg,#fff 0%,#fffafa 100%)}
-    .alert-card h4{font-size:16px;line-height:1.35;color:#172d43}
-    .alert-card p{line-height:1.55}
-    .alert-meta{padding-top:8px;border-top:1px solid #edf1f5}
-    .card a{display:inline-flex;align-items:center;gap:5px;margin-top:2px;font-size:11px}
-    .filter{border-radius:8px;padding:8px 12px;font-size:12px}
-    .filter.active{box-shadow:0 2px 7px #10243a25}
-    .panel{padding:19px}
-    .panel h3{color:#172d43;font-size:16px}
-    .btn{border-radius:8px;padding:11px 15px}
-    .sources a{border:1px solid #e2eaf1;border-radius:8px;background:#f7fafd}
-    footer{max-width:1040px;border-top:1px solid #e0e7ee;padding-top:15px;line-height:1.7}
-    @media(max-width:620px){header{padding:18px 16px 20px}.intro{margin-top:25px}.intro h2{font-size:28px}.hero-foot{font-size:9px;gap:7px 14px}.live{font-size:9px;padding:6px 8px}.wrap{padding:13px}.card:hover,.panel:hover{transform:none}}
-  
-/* Tableau vivant : identité chromatique et données en direct */
-:root{--accent:#0e9fba;--accent2:#5b6ee1}
-body{background:radial-gradient(circle at 5% 8%,#dff7f5 0,transparent 26%),radial-gradient(circle at 95% 28%,#eee9ff 0,transparent 28%),#f5f7fb;transition:background .5s ease}
-header{background:linear-gradient(115deg,#10243a,#075985,#0f9f9a,#5b6ee1);background-size:260% 260%;animation:headerFlow 18s ease infinite}
-@keyframes headerFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.wrap{max-width:1120px}
-.dashboard-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 17px}
-.clock-card{display:flex;align-items:center;gap:10px;background:#ffffffd9;border:1px solid #dfe8f1;border-radius:14px;padding:10px 14px;box-shadow:0 8px 24px #16324a0b}
-.clock-time{font-size:19px;font-weight:850;letter-spacing:.5px;color:#18334b;font-variant-numeric:tabular-nums}
-.clock-date{font-size:11px;color:#637386;text-transform:capitalize}
-.theme-switch{border:0;border-radius:12px;padding:10px 13px;background:#173e59;color:white;font-weight:750;cursor:pointer;box-shadow:0 5px 16px #173e5930}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:18px}
-.stat{border-radius:15px;padding:14px 16px;color:white;min-height:88px;box-shadow:0 8px 22px #142b4214;position:relative;overflow:hidden}
-.stat:after{content:"";position:absolute;width:100px;height:100px;border:1px solid #ffffff30;border-radius:50%;right:-26px;top:-35px;box-shadow:0 0 0 14px #ffffff0c}
-.stat:nth-child(1){background:linear-gradient(130deg,#087e8b,#0eaaa1)}
-.stat:nth-child(2){background:linear-gradient(130deg,#3858a7,#6979e7)}
-.stat:nth-child(3){background:linear-gradient(130deg,#b65b55,#ed9b62)}
-.stat strong{display:block;font-size:24px;line-height:1.2;font-weight:850}
-.stat span{font-size:11px;color:#ffffffdc;font-weight:650}
-.weather-panel{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;background:linear-gradient(125deg,#fff 0%,#f0faff 55%,#f2f0ff 100%);border:1px solid #dce9f1;border-radius:18px;padding:18px;box-shadow:0 8px 26px #16324a0b}
-.weather-main{display:flex;align-items:center;gap:15px}
-.weather-icon{font-size:43px;line-height:1}
-.weather-temp{font-size:36px;line-height:1;font-weight:850;letter-spacing:-1.5px;color:#153b58}
-.weather-desc{font-size:13px;color:#526b7e;margin-top:5px}
-.weather-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.weather-chip{background:#ffffffc9;border:1px solid #e2edf3;border-radius:11px;padding:10px}
-.weather-chip strong{display:block;font-size:15px;color:#1d435d}
-.weather-chip span{font-size:10px;color:#718397}
-.weather-foot{grid-column:1/-1;font-size:10px;color:#74879a;margin-top:2px}
-.section-title{margin-top:25px}
-.section-title h3{display:flex;align-items:center;gap:8px}
-.section-title h3:before{content:"";width:4px;height:19px;border-radius:5px;background:linear-gradient(var(--accent),var(--accent2))}
-.card{border-radius:15px;box-shadow:0 5px 18px #19344c0a}
-.card:hover{border-color:#b8dbe5;box-shadow:0 12px 25px #19344c13}
-.filter.active{background:linear-gradient(110deg,#173e59,var(--accent2));border-color:transparent}
-.btn{background:linear-gradient(110deg,#087e8b,#2475b9)}
-.status.live-data{background:#e4f8ef;color:#08734c}
-.alert-card.high{border-left-color:#e05252}
-.feed-state:before{content:"";width:7px;height:7px;border-radius:50%;background:#10a879;box-shadow:0 0 0 4px #10a8791c;flex:none}
-.feed-state.error:before{background:#d94848;box-shadow:0 0 0 4px #d948481c}
-body[data-theme="sunset"]{--accent:#ef7655;--accent2:#a64cc5;background:radial-gradient(circle at 5% 8%,#fff0df 0,transparent 27%),radial-gradient(circle at 95% 28%,#f8e6f3 0,transparent 28%),#fbf6f5}
-body[data-theme="sunset"] header{background:linear-gradient(115deg,#542b4c,#b64e58,#ee925d,#7b4ba5);background-size:260% 260%}
-body[data-theme="lagoon"]{--accent:#079b9b;--accent2:#3976c6;background:radial-gradient(circle at 5% 8%,#d9f8f1 0,transparent 27%),radial-gradient(circle at 95% 28%,#e0efff 0,transparent 28%),#f2f8fa}
-body[data-theme="lagoon"] header{background:linear-gradient(115deg,#063b4a,#087e8b,#16a6a1,#3c75bb);background-size:260% 260%}
-@media(max-width:650px){.stats{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:span 2}.weather-panel{grid-template-columns:1fr}.clock-time{font-size:17px}.dashboard-bar{align-items:stretch}.clock-card{flex:1}}
-@media(prefers-reduced-motion:reduce){header{animation:none}*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
-
-  
-/* Refonte centre de veille */
-:root{--ink:#14283d;--muted:#65798d;--line:#dce6ef;--accent:#00a6a6;--accent2:#5577e8}
-body{background:#edf3f8;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
-header{padding:22px max(18px,calc((100vw - 1180px)/2)) 28px;background:linear-gradient(125deg,#071a2d 0%,#103b5b 48%,#087e8b 100%);background-size:180% 180%;animation:headerFlow 14s ease infinite}
-header:after{width:500px;height:500px;right:-140px;top:-280px}
-.intro{margin-top:25px}.intro h2{font-size:clamp(28px,4vw,42px);max-width:760px}
-.wrap{max-width:1180px;padding:20px 22px 34px}
-.dashboard-bar{position:sticky;top:8px;z-index:20;background:#edf3f8eF;backdrop-filter:blur(12px);padding:9px;border:1px solid #dce6ef;border-radius:16px;box-shadow:0 8px 25px #10243a12}
-.clock-card{border:0;background:white}.theme-switch{background:#102f49}
-.stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.stat{min-height:104px;padding:17px 19px;border-radius:18px}
-.stat strong{font-size:30px}.stat span{letter-spacing:.7px}
-.notice{border-radius:14px;background:#fff;border:1px solid #dce6ef;border-left:4px solid #1597a6;box-shadow:0 5px 18px #10243a08}
-.section-title{margin:29px 0 12px}.section-title h3{font-size:20px}
-.section-title h3:before{height:22px}
-.feed-state{padding:7px 10px;border-radius:9px;background:#e5edf4;display:inline-flex;min-height:30px}
-.feed-state.error{background:#fff0ef;color:#a52a25}
-.grid{gap:14px}
-.card{border:1px solid #dbe5ee;border-radius:17px;padding:18px;background:linear-gradient(145deg,#fff,#f9fcff);box-shadow:0 5px 20px #18344d0a;min-height:160px}
-.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px #18344d17}
-.alert-card{border-left:5px solid #e4a23b}.alert-card.high{border-left-color:#e05252}
-.card h4{font-size:16px}.card p{font-size:13px;line-height:1.6}
-.status.live-data{background:#dff7ed;color:#08734c}
-.toolbar{position:sticky;top:76px;z-index:15;background:#edf3f8ed;padding:8px;border-radius:14px}
-.filter{border-radius:99px;padding:9px 15px}
-.weather-panel{border-radius:20px;padding:22px;box-shadow:0 8px 25px #18344d0a}
-.tools{gap:14px}.panel{border-radius:17px}
-.sources a{transition:transform .15s ease}.sources a:hover{transform:translateY(-2px)}
-footer{max-width:1180px}
-.ticker{display:flex;align-items:center;gap:12px;overflow:hidden;background:#071d30;color:#fff;border-radius:15px;margin:0 0 17px;padding:11px 13px;box-shadow:0 7px 22px #10243a18}
-.ticker-label{display:flex;align-items:center;gap:7px;white-space:nowrap;font-size:10px;letter-spacing:1px;font-weight:900;color:#75e0d3}
-.ticker-dot{width:8px;height:8px;border-radius:50%;background:#ff6c6c;box-shadow:0 0 0 4px #ff6c6c25}
-.ticker-window{overflow:hidden;flex:1;min-width:0}
-.ticker-track{display:flex;width:max-content;align-items:center;gap:34px;animation:tickerMove 42s linear infinite}
-.ticker:hover .ticker-track,.ticker.paused .ticker-track{animation-play-state:paused}
-.ticker-item{color:#eaf6fc;text-decoration:none;font-size:12px;white-space:nowrap;display:flex;align-items:center;gap:8px}
-.ticker-item:before{content:"";width:5px;height:5px;background:#56d6c6;border-radius:50%}
-.ticker-item:hover{color:#78e4d6}
-.ticker-actions{display:flex;gap:6px}
-.ticker-actions button,.refresh-all{border:1px solid #ffffff35;border-radius:9px;background:#ffffff12;color:white;padding:7px 9px;font-size:11px;font-weight:750;cursor:pointer;white-space:nowrap}
-.refresh-all{background:#0c8792;border-color:#3ac0bd}
-@keyframes tickerMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.live-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.85fr);gap:18px;align-items:start}
-.live-column{min-width:0}
-.side-column{position:relative}
-#liveAlerts,#railAlerts,#prefNews{grid-template-columns:repeat(2,minmax(0,1fr))}
-.quick-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.quick-actions button{border:1px solid #d7e3ed;border-radius:10px;background:#fff;color:#24435d;padding:9px 12px;font-weight:750;font-size:12px;cursor:pointer}
-.quick-actions button:hover{background:#e3f5f5;border-color:#9bd7d5}
-.empty{border:1px dashed #c7d6e3;border-radius:15px;background:#f8fbfd}
-@media(max-width:850px){.live-layout{grid-template-columns:1fr}.side-column{display:contents}.weather-panel{grid-row:auto}}
-@media(max-width:620px){.wrap{padding:13px}.stats{gap:8px}.stat{padding:13px;min-height:84px}.stat strong{font-size:24px}.stat span{font-size:9px}.ticker{gap:8px;padding:9px}.ticker-label{font-size:9px}.ticker-actions button{padding:6px}.toolbar{top:68px}.dashboard-bar{top:5px}.intro h2{font-size:29px}#liveAlerts,#railAlerts,#prefNews{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){.ticker-track{animation:none}header{animation:none}}
-
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#102b43">
+<meta name="description" content="Vigie 13 — informations et alertes locales dans les Bouches-du-Rhône">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<title>Vigie 13 — Centre de veille local</title>
+<style>
+:root{--navy:#102b43;--navy2:#173e5a;--teal:#0c9b9b;--blue:#3978b9;--ink:#172b3d;--muted:#6b7c8d;--bg:#f2f6fa;--line:#dce5ed;--white:#fff;--red:#c94c4c;--green:#16815b;--amber:#a96b16}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}
+header{background:linear-gradient(120deg,#0b2034,#123d5b 62%,#087e87);color:white;padding:17px max(18px,calc((100vw - 1120px)/2));position:relative;z-index:5}
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:11px}.logo{width:43px;height:43px;border-radius:13px;background:#fff;color:#12334e;display:grid;place-items:center;font-size:22px;font-weight:900;box-shadow:0 5px 18px #06152640}.brand h1{font-size:21px;line-height:1.1;margin:0}.brand p{font-size:9px;letter-spacing:1.1px;color:#c5d9e6;font-weight:800;margin:4px 0 0}.live{display:flex;align-items:center;gap:8px;border:1px solid #ffffff35;border-radius:99px;padding:7px 11px;font-size:10px;letter-spacing:.8px;font-weight:800;color:#e4f5fc}.live i{width:7px;height:7px;background:#51d6a2;border-radius:50%;box-shadow:0 0 0 4px #51d6a225}
+main{max-width:1120px;margin:auto;padding:18px 22px 44px}.topline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:3px 0 13px}.clock{font-size:12px;color:var(--muted);font-weight:700}.refresh{border:1px solid var(--line);background:white;border-radius:10px;padding:8px 12px;color:var(--navy2);font-weight:800;font-size:12px}.refresh:disabled{opacity:.6}
+.hero{position:relative;overflow:hidden;border-radius:22px;height:clamp(245px,34vw,390px);background:#173d58;box-shadow:0 14px 35px #102b4320}.slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;pointer-events:none}.slide.active{opacity:1;pointer-events:auto}.slide img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.62)}.slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#061a2bd9 0%,#061a2b75 52%,transparent 100%)}.slide-copy{position:absolute;z-index:2;left:clamp(20px,5vw,55px);bottom:clamp(25px,5vw,48px);max-width:590px;color:#fff}.slide-kicker{font-size:10px;letter-spacing:1.6px;font-weight:900;color:#8de0dc}.slide-copy h2{font-size:clamp(25px,4vw,42px);line-height:1.08;letter-spacing:-.8px;margin:8px 0}.slide-copy p{font-size:14px;color:#e0edf4;max-width:490px;margin:0}.slide-cta{display:inline-flex;margin-top:17px;text-decoration:none;background:#fff;color:#12344d;padding:10px 15px;border-radius:10px;font-size:12px;font-weight:850}.carousel-control{position:absolute;z-index:4;top:50%;transform:translateY(-50%);border:1px solid #ffffff70;background:#071d2d70;color:white;border-radius:50%;width:38px;height:38px;font-size:21px;display:grid;place-items:center}.carousel-control.prev{left:12px}.carousel-control.next{right:12px}.dots{position:absolute;z-index:4;bottom:15px;right:20px;display:flex;gap:7px}.dot{width:8px;height:8px;padding:0;border:0;border-radius:99px;background:#ffffff85}.dot.active{width:24px;background:#fff}
+.status-row{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:16px 0 19px}.status-box{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 15px;min-width:0;box-shadow:0 4px 14px #102b4308}.status-box strong{display:block;font-size:22px;color:var(--navy);line-height:1.2}.status-box span{font-size:10px;letter-spacing:.7px;font-weight:850;color:var(--muted)}.status-box small{display:block;font-size:10px;color:var(--muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:23px 0 11px}.section-heading h2{margin:0;font-size:19px;letter-spacing:-.3px}.section-heading p{margin:0;color:var(--muted);font-size:11px}
+.menu-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.menu-card{border:1px solid var(--line);background:#fff;border-radius:17px;padding:17px 14px;text-align:left;display:flex;flex-direction:column;gap:9px;min-height:138px;color:var(--ink);box-shadow:0 5px 16px #102b4308;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.menu-card:hover{transform:translateY(-3px);border-color:#a8cbd5;box-shadow:0 12px 24px #102b4314}.menu-icon{width:39px;height:39px;border-radius:12px;background:#e9f6f5;color:#087e83;display:grid;place-items:center;font-size:21px}.menu-card:nth-child(2) .menu-icon{background:#edf1ff;color:#4c63b8}.menu-card:nth-child(3) .menu-icon{background:#fff3e5;color:#a76519}.menu-card:nth-child(4) .menu-icon{background:#f1edff;color:#7454b2}.menu-card strong{font-size:14px}.menu-card small{font-size:11px;color:var(--muted);line-height:1.4}
+.ticker{display:flex;align-items:center;gap:11px;background:#0d263b;color:#fff;border-radius:13px;padding:10px 13px;margin:16px 0}.ticker-label{font-size:9px;letter-spacing:1px;font-weight:900;color:#7fe0d4;white-space:nowrap}.ticker-window{overflow:hidden;flex:1;min-width:0}.ticker-track{display:flex;gap:30px;width:max-content;animation:marquee 40s linear infinite}.ticker:hover .ticker-track,.ticker.paused .ticker-track{animation-play-state:paused}.ticker-item{white-space:nowrap;color:#e6f2f8;font-size:11px;text-decoration:none}.ticker-item b{color:#86e0d6}.ticker-empty{font-size:11px;color:#d1e1ea}@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.view{display:none;animation:appear .25s ease}.view.active{display:block}@keyframes appear{from{opacity:.2;transform:translateY(5px)}to{opacity:1;transform:none}}.back{border:0;background:transparent;color:#176b85;font-weight:850;padding:8px 0;font-size:12px}.view-title{display:flex;align-items:center;gap:12px;margin:5px 0 15px}.view-title .menu-icon{flex:none}.view-title h2{margin:0;font-size:23px}.view-title p{margin:2px 0 0;color:var(--muted);font-size:12px}
+.feed-state{display:block;font-size:11px;color:var(--muted);margin:0 0 10px}.feed-state.error{color:var(--red)}.feed-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.card{background:white;border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:0 4px 15px #102b4308;min-width:0}.card h3{font-size:15px;margin:8px 0 5px}.card p{font-size:12px;color:#5d6e7f;margin:0 0 9px;line-height:1.55;overflow-wrap:anywhere}.card a,.external-link{color:#176b9b;text-decoration:none;font-size:11px;font-weight:850}.card a:hover,.external-link:hover{text-decoration:underline}.card-meta{font-size:10px!important;color:#78899a!important;border-top:1px solid #edf1f5;padding-top:7px;margin-top:8px!important}.tag{font-size:9px;letter-spacing:.7px;font-weight:900;color:#587084}.pill{font-size:9px;font-weight:850;color:#13744e;background:#e5f7ee;border-radius:99px;padding:4px 7px}.card-head{display:flex;align-items:center;justify-content:space-between;gap:7px}.empty{padding:18px;border:1px dashed #c9d7e2;border-radius:14px;background:#fff;color:var(--muted);font-size:12px;text-align:center}
+.weather-panel{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:linear-gradient(120deg,#fff,#eff8ff);border:1px solid var(--line);border-radius:17px;padding:19px}.weather-main{display:flex;align-items:center;gap:14px}.weather-icon{font-size:42px}.weather-temp{font-size:36px;line-height:1;font-weight:900;color:var(--navy)}.weather-desc{font-size:12px;color:var(--muted);margin-top:5px}.weather-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.weather-chip{background:#ffffffd9;border:1px solid #e3edf4;border-radius:10px;padding:9px}.weather-chip strong{display:block;font-size:14px}.weather-chip span{font-size:9px;color:var(--muted);font-weight:800}.weather-foot{grid-column:1/-1;color:var(--muted);font-size:10px}
+.link-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.link-tile{display:flex;align-items:center;justify-content:space-between;gap:12px;background:white;border:1px solid var(--line);border-radius:13px;padding:14px;text-decoration:none;color:var(--ink)}.link-tile strong{display:block;font-size:13px}.link-tile small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.link-tile b{color:#287d9a}
+.info-note{background:#fff8e9;border:1px solid #f0dfb8;border-left:4px solid #d59a36;border-radius:12px;padding:12px 14px;color:#76551d;font-size:11px;line-height:1.55;margin:13px 0}
+.install-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.install-step{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px}.install-step strong{display:block;font-size:12px;margin-bottom:5px}.install-step p{font-size:11px;color:var(--muted);margin:0}
+.bottom-nav{display:none}footer{max-width:1120px;margin:auto;padding:16px 22px 30px;border-top:1px solid var(--line);color:#778899;font-size:10px;line-height:1.7}.credits a{color:#50758e}
+@media(max-width:760px){main{padding:14px 14px 90px}.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.menu-card{min-height:120px}.status-box{padding:11px}.status-box strong{font-size:19px}.hero{height:300px}.slide-copy{right:40px}.slide-copy h2{font-size:29px}.feed-grid{grid-template-columns:1fr}.bottom-nav{display:flex;position:fixed;z-index:30;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(15px);border-top:1px solid var(--line);padding:7px max(8px,env(safe-area-inset-left)) calc(7px + env(safe-area-inset-bottom));justify-content:space-around}.bottom-nav button{border:0;background:transparent;color:#64798a;font-size:9px;font-weight:850;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px}.bottom-nav button span{font-size:18px}.weather-panel{grid-template-columns:1fr}.link-grid{grid-template-columns:1fr}.install-steps{grid-template-columns:1fr}.topline{align-items:center}}
+@media(max-width:420px){.live{font-size:8px;padding:6px 8px}.brand h1{font-size:19px}.hero{height:275px}.slide-copy h2{font-size:25px}.slide-copy p{font-size:12px}.status-row{gap:7px}.status-box span{font-size:8px}.status-box small{font-size:9px}.menu-card{padding:13px}.ticker-label{font-size:8px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-<header><div class="top"><div class="brand"><div class="logo">V<span>13</span></div><div><h1>Vigie 13</h1><p>VEILLE TERRITORIALE · BOUCHES-DU-RHÔNE</p></div></div><span class="live"><span class="live-dot"></span> TABLEAU DE VEILLE</span></div><div class="intro"><div class="eyebrow">INFORMATION LOCALE · SOURCES IDENTIFIÉES</div><h2>Gardez un temps d’avance sur les perturbations.</h2><p>Un point de situation pour suivre les transports, la circulation et les alertes utiles dans les Bouches-du-Rhône.</p></div><div class="hero-foot"><span>Actualisation automatique · transports et météo locale</span><span>Un service indépendant d’information</span></div></header>
-<div class="wrap" style="padding-bottom:0"><div class="ticker" id="ticker"><div class="ticker-label"><span class="ticker-dot"></span> FIL D'INFO</div><div class="ticker-window"><div class="ticker-track" id="tickerTrack"><span class="ticker-item">Connexion aux sources locales en cours…</span></div></div><div class="ticker-actions"><button type="button" id="tickerPause" aria-label="Mettre en pause le fil">Pause</button><button type="button" id="refreshAll" class="refresh-all">↻ Actualiser</button></div></div></div>
-<main class="wrap">
-  <div class="dashboard-bar"><div class="clock-card"><div><div class="clock-time" id="liveClock">--:--:--</div><div class="clock-date" id="liveDate">Bouches-du-Rhône · Marseille</div></div></div><button class="theme-switch" id="themeSwitch" type="button">Changer les couleurs ✦</button></div>
-  <div class="stats"><div class="stat"><strong id="transportCount">—</strong><span>PERTURBATIONS TRANSPORT</span></div><div class="stat"><strong id="weatherStat">—</strong><span>MÉTÉO À MARSEILLE</span></div><div class="stat"><strong id="updateStat">—</strong><span>DERNIÈRE SYNCHRONISATION</span></div></div>
-  <div class="notice"><strong>Transparence des sources :</strong> les perturbations de transports sont récupérées automatiquement depuis le flux GTFS-RT de La Métropole Mobilité (rafraîchi par sa source toutes les 5 minutes) et la météo actuelle de Marseille provient d’Open-Meteo. La météo affichée est indicative et ne remplace pas les vigilances officielles. Les alertes ferroviaires SNCF sont également interrogées et filtrées sur les mentions du territoire ; les actualités de la préfecture sont récupérées via son flux RSS officiel. Le trafic routier détaillé et les notifications push automatiques restent à intégrer.</div>
-  <div class="section-title"><h3>Perturbations de mobilité</h3><span id="feedUpdated">Chargement…</span></div><p class="feed-state" id="feedState" aria-live="polite">Chargement des dernières données de mobilité…</p><section class="grid" id="liveAlerts" aria-live="polite"></section><div class="empty" id="liveEmpty" style="display:none">Aucune perturbation active remontée par la source de mobilité au dernier contrôle.</div><div class="section-title"><h3>Alertes ferroviaires · TER / SNCF</h3><span id="railUpdated">Chargement…</span></div><p class="feed-state" id="railState" aria-live="polite">Recherche des alertes concernant les Bouches-du-Rhône…</p><section class="grid" id="railAlerts" aria-live="polite"></section><div class="empty" id="railEmpty" style="display:none">Aucune alerte ferroviaire locale détectée dans le flux SNCF au dernier contrôle.</div>
-  <div class="section-title"><h3>Météo en direct · Marseille</h3><span id="weatherUpdated">Chargement…</span></div><section class="weather-panel" id="weatherPanel" data-category="meteo" aria-live="polite"><div class="weather-main"><div class="weather-icon" id="weatherIcon">⛅</div><div><div class="weather-temp" id="weatherTemp">—°</div><div class="weather-desc" id="weatherDesc">Récupération des conditions actuelles…</div></div></div><div class="weather-meta"><div class="weather-chip"><strong id="feelsLike">—</strong><span>RESSENTI</span></div><div class="weather-chip"><strong id="windSpeed">—</strong><span>VENT</span></div><div class="weather-chip"><strong id="humidity">—</strong><span>HUMIDITÉ</span></div><div class="weather-chip"><strong id="rainChance">—</strong><span>RISQUE DE PLUIE · PROCHAINE HEURE</span></div></div><div class="weather-foot" id="weatherSource">Source : Open-Meteo · météo indicative, distincte des vigilances officielles.</div></section>
-  <div class="section-title"><h3>Préfecture · Actualités et communiqués</h3><span id="prefUpdated">Chargement…</span></div><p class="feed-state" id="prefState" aria-live="polite">Récupération des publications officielles…</p><section class="grid" id="prefNews" aria-live="polite"></section><div class="empty" id="prefEmpty" style="display:none">Aucune actualité récente remontée par le flux RSS officiel.</div>
-  <div class="section-title"><h3>Autres sources officielles</h3><span id="today"></span></div>
-  <nav class="toolbar" aria-label="Filtrer les catégories"><button class="filter active" data-filter="all">Tout</button><button class="filter" data-filter="transport">Transports</button><button class="filter" data-filter="route">Routes</button><button class="filter" data-filter="meteo">Météo</button><button class="filter" data-filter="securite">Sécurité</button><button class="filter" data-filter="services">Services publics</button></nav>
-  <section class="grid" id="cards">
-    <article class="card" data-category="transport"><div class="card-head"><span class="tag">TRANSPORTS</span><span class="status">SOURCE OFFICIELLE</span></div><h4>RTM · Métro, bus et tramway</h4><p>Consultez les informations de circulation et les déviations publiées par l'opérateur.</p><a href="https://www.rtm.fr/" target="_blank" rel="noopener">Ouvrir la source officielle ↗</a></article>
-    <article class="card" data-category="transport"><div class="card-head"><span class="tag">TRAINS</span><span class="status">SOURCE OFFICIELLE</span></div><h4>TER Sud · Trains régionaux</h4><p>Vérifiez les travaux, suppressions et retards avant le départ.</p><a href="https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur" target="_blank" rel="noopener">Consulter TER Sud ↗</a></article>
-    <article class="card" data-category="route"><div class="card-head"><span class="tag">CIRCULATION</span><span class="status">SOURCE OFFICIELLE</span></div><h4>Routes et autoroutes</h4><p>État du trafic, chantiers, accidents et conditions de circulation.</p><a href="https://www.bison-fute.gouv.fr/" target="_blank" rel="noopener">Ouvrir Bison Futé ↗</a></article>
-    <article class="card" data-category="meteo"><div class="card-head"><span class="tag">MÉTÉO & RISQUES</span><span class="status">SOURCE OFFICIELLE</span></div><h4>Vigilance météorologique</h4><p>Vigilances départementales : pluie-inondation, orages, vent, canicule et grand froid.</p><a href="https://vigilance.meteofrance.fr/fr" target="_blank" rel="noopener">Voir Météo-France ↗</a></article>
-    <article class="card" data-category="securite"><div class="card-head"><span class="tag">SÉCURITÉ</span><span class="status">SOURCE OFFICIELLE</span></div><h4>Alertes officielles</h4><p>Consignes de sécurité et alertes diffusées par les autorités compétentes.</p><a href="https://fr-alert.gouv.fr/" target="_blank" rel="noopener">Voir FR-Alert ↗</a></article>
-    <article class="card" data-category="services"><div class="card-head"><span class="tag">SERVICES PUBLICS</span><span class="status">SOURCE OFFICIELLE</span></div><h4>Préfecture des Bouches-du-Rhône</h4><p>Communiqués, restrictions, fermetures et informations institutionnelles.</p><a href="https://www.bouches-du-rhone.gouv.fr/" target="_blank" rel="noopener">Consulter la préfecture ↗</a></article>
-    <article class="card" data-category="transport"><div class="card-head"><span class="tag">AÉRIEN</span><span class="status">SOURCE OFFICIELLE</span></div><h4>Aéroport Marseille-Provence</h4><p>Départs et arrivées : vérifiez le statut directement auprès de l'aéroport.</p><a href="https://www.marseille.aeroport.fr/vols-et-destinations/vols" target="_blank" rel="noopener">Voir les vols ↗</a></article>
-    <article class="card" data-category="route"><div class="card-head"><span class="tag">INFORMATION ROUTIÈRE</span><span class="status">SOURCE OFFICIELLE</span></div><h4>Inforoute départementale</h4><p>Informations sur les routes départementales et les conditions de circulation.</p><a href="https://www.bouches-du-rhone.gouv.fr/" target="_blank" rel="noopener">Informations institutionnelles ↗</a></article>
-  </section>
-  <div class="empty" id="empty">Aucune source dans cette catégorie pour le moment.</div>
-  <section class="tools"><div class="panel"><h3>Recevoir les notifications</h3><p>Autorisez les notifications du navigateur. La permission peut être enregistrée, mais l’envoi automatique des alertes Vigie 13 n’est pas encore activé.</p><button class="btn" id="notify">Activer les notifications</button><div class="small" id="notifyState" aria-live="polite">Aucune demande de permission effectuée.</div></div><div class="panel"><h3>Installer Vigie 13</h3><p>Ajoutez l'application à votre écran d'accueil depuis le menu de partage ou du navigateur, depuis le menu de votre navigateur. Vigie 13 est déjà accessible en HTTPS.</p><button class="btn secondary" id="install" disabled>Installer l'application</button><div class="small" id="installState">L'installation sera proposée par le navigateur compatible.</div></div></section>
-  <section class="panel" style="margin-top:12px"><h3>Sources officielles rapides</h3><p>Accès direct aux organismes qui publient les informations de référence.</p><div class="sources"><a href="https://www.rtm.fr/" target="_blank" rel="noopener">RTM</a><a href="https://www.sncf.com/fr/itineraire-reservation/info-trafic" target="_blank" rel="noopener">SNCF</a><a href="https://www.bison-fute.gouv.fr/" target="_blank" rel="noopener">Bison Futé</a><a href="https://vigilance.meteofrance.fr/fr" target="_blank" rel="noopener">Météo-France</a><a href="https://fr-alert.gouv.fr/" target="_blank" rel="noopener">FR-Alert</a><a href="https://www.bouches-du-rhone.gouv.fr/" target="_blank" rel="noopener">Préfecture 13</a></div></section>
-</main><footer>Vigie 13 · Projet indépendant. Les alertes d'urgence officielles restent celles des autorités. Vérifiez toujours l'heure de mise à jour et la source d'une information.</footer>
+<header><div class="top"><div class="brand"><div class="logo">V13</div><div><h1>Vigie 13</h1><p>CENTRE DE VEILLE · BOUCHES-DU-RHÔNE</p></div></div><div class="live"><i></i> VEILLE LOCALE</div></div></header>
+<main>
+<section id="homeView" class="view active" aria-label="Accueil">
+<div class="topline"><div class="clock" id="clock">Marseille · --:--</div><button class="refresh" id="refreshAll">↻ Actualiser</button></div>
+<div class="hero" id="hero" aria-label="Images du territoire">
+<div class="slide active"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Marseille_vieux_port_pano.jpg/1280px-Marseille_vieux_port_pano.jpg" alt="Panorama du Vieux-Port de Marseille" fetchpriority="high"><div class="slide-copy"><div class="slide-kicker">VOTRE TERRITOIRE · EN UN COUP D’ŒIL</div><h2>Marseille et les Bouches-du-Rhône, en temps réel.</h2><p>Les informations utiles pour anticiper vos déplacements et suivre les alertes locales.</p><a class="slide-cta" href="#menu" data-open="transport">Consulter les perturbations</a></div></div>
+<div class="slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Calanque_de_Sormiou.jpg/1280px-Calanque_de_Sormiou.jpg" alt="Calanque de Sormiou à Marseille" loading="lazy"><div class="slide-copy"><div class="slide-kicker">ENVIRONNEMENT · LITTORAL</div><h2>Un territoire à suivre, de la ville aux calanques.</h2><p>Retrouvez la météo actuelle et les liens vers les informations officielles de vigilance.</p><a class="slide-cta" href="#menu" data-open="weather">Voir la météo</a></div></div>
+<div class="slide"><img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Marseille-Fort_Saint-Jean.JPG" alt="Fort Saint-Jean à Marseille" loading="lazy"><div class="slide-copy"><div class="slide-kicker">INFORMATIONS OFFICIELLES</div><h2>Les bons repères, au même endroit.</h2><p>Transports, météo, routes et actualités institutionnelles : accédez aux rubriques en un geste.</p><a class="slide-cta" href="#menu" data-open="news">Voir les actualités</a></div></div>
+<button class="carousel-control prev" id="prevSlide" aria-label="Image précédente">‹</button><button class="carousel-control next" id="nextSlide" aria-label="Image suivante">›</button><div class="dots"><button class="dot active" data-slide="0" aria-label="Image 1"></button><button class="dot" data-slide="1" aria-label="Image 2"></button><button class="dot" data-slide="2" aria-label="Image 3"></button></div>
+</div>
+<div class="status-row"><div class="status-box"><strong id="transportCount">—</strong><span>ALERTES MOBILITÉ</span><small id="transportStatus">Connexion aux sources…</small></div><div class="status-box"><strong id="weatherStat">—</strong><span>MÉTÉO MARSEILLE</span><small id="weatherStatus">Chargement…</small></div><div class="status-box"><strong id="syncStat">—</strong><span>DERNIÈRE SYNCHRO</span><small id="syncStatus">En attente des flux</small></div></div>
+<div class="section-heading" id="menu"><h2>Que souhaitez-vous consulter ?</h2><p>Choisissez une rubrique</p></div>
+<div class="menu-grid">
+<button class="menu-card" data-page="transport"><span class="menu-icon">🚇</span><strong>Transports</strong><small>RTM, métro, bus, tramway et TER</small></button>
+<button class="menu-card" data-page="weather"><span class="menu-icon">🌦️</span><strong>Météo & vigilance</strong><small>Conditions actuelles et sources officielles</small></button>
+<button class="menu-card" data-page="roads"><span class="menu-icon">🚗</span><strong>Routes & circulation</strong><small>Trafic, autoroutes et itinéraires</small></button>
+<button class="menu-card" data-page="news"><span class="menu-icon">🚨</span><strong>Alertes & actualités</strong><small>Préfecture et informations publiques</small></button>
+</div>
+<div class="ticker" id="ticker"><span class="ticker-label">FIL D’INFO</span><div class="ticker-window"><div class="ticker-track" id="tickerTrack"><span class="ticker-empty">Les informations locales apparaîtront ici après le chargement des sources.</span></div></div><button class="refresh" id="tickerPause" style="padding:6px 9px">Pause</button></div>
+<div style="text-align:center;color:#8292a1;font-size:10px;margin-top:12px">Vigie 13 est un service indépendant. En cas d’urgence, suivez les consignes des autorités.</div>
+</section>
+
+<section id="transportView" class="view">
+<button class="back" data-page="home">← Retour à l’accueil</button><div class="view-title"><span class="menu-icon">🚇</span><div><h2>Transports</h2><p>Alertes de mobilité et informations ferroviaires</p></div></div>
+<div class="section-heading"><h2>Réseaux métropolitains</h2><p id="feedUpdated">Chargement…</p></div><p class="feed-state" id="feedState">Récupération des perturbations…</p><div class="feed-grid" id="liveAlerts"></div><div class="empty" id="liveEmpty" hidden>Aucune perturbation active remontée par la source au dernier contrôle.</div>
+<div class="section-heading"><h2>TER / SNCF</h2><p id="railUpdated">Chargement…</p></div><p class="feed-state" id="railState">Recherche des alertes ferroviaires…</p><div class="feed-grid" id="railAlerts"></div><div class="empty" id="railEmpty" hidden>Aucune alerte locale détectée dans le flux SNCF au dernier contrôle.</div>
+<div class="info-note">Les alertes SNCF sont filtrées à partir des informations présentes dans le flux national : certaines perturbations locales peuvent ne pas être reconnues. Vérifiez toujours le détail auprès de l’opérateur.</div>
+<div class="link-grid"><a class="link-tile" href="https://www.rtm.fr/" target="_blank" rel="noopener"><span><strong>RTM</strong><small>Métro, bus et tramway</small></span><b>↗</b></a><a class="link-tile" href="https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/se-deplacer/info-trafic" target="_blank" rel="noopener"><span><strong>TER Sud</strong><small>Info trafic régional</small></span><b>↗</b></a></div>
+</section>
+
+<section id="weatherView" class="view">
+<button class="back" data-page="home">← Retour à l’accueil</button><div class="view-title"><span class="menu-icon">🌦️</span><div><h2>Météo & vigilance</h2><p>Conditions actuelles à Marseille</p></div></div>
+<div class="weather-panel"><div class="weather-main"><div class="weather-icon" id="weatherIcon">⛅</div><div><div class="weather-temp" id="weatherTemp">—°C</div><div class="weather-desc" id="weatherDesc">Récupération des conditions actuelles…</div></div></div><div class="weather-meta"><div class="weather-chip"><strong id="feelsLike">—</strong><span>RESSENTI</span></div><div class="weather-chip"><strong id="windSpeed">—</strong><span>VENT</span></div><div class="weather-chip"><strong id="humidity">—</strong><span>HUMIDITÉ</span></div><div class="weather-chip"><strong id="rainChance">—</strong><span>RISQUE DE PLUIE · 1 H</span></div></div><div class="weather-foot" id="weatherUpdated">Source : Open-Meteo · conditions indicatives.</div></div>
+<div class="info-note">Cette météo ne constitue pas une vigilance officielle. Pour les alertes départementales (orages, pluie-inondation, vent, canicule…), consultez directement Météo-France.</div>
+<div class="link-grid"><a class="link-tile" href="https://vigilance.meteofrance.fr/fr" target="_blank" rel="noopener"><span><strong>Vigilance Météo-France</strong><small>Carte officielle des départements</small></span><b>↗</b></a><a class="link-tile" href="https://meteofrance.com/previsions-meteo-france/marseille/13000" target="_blank" rel="noopener"><span><strong>Prévisions Marseille</strong><small>Prévisions détaillées</small></span><b>↗</b></a></div>
+</section>
+
+<section id="roadsView" class="view">
+<button class="back" data-page="home">← Retour à l’accueil</button><div class="view-title"><span class="menu-icon">🚗</span><div><h2>Routes & circulation</h2><p>Accès rapide aux sources routières de référence</p></div></div>
+<div class="info-note">Le trafic routier en direct n’est pas encore intégré automatiquement à Vigie 13. Les liens ci-dessous ouvrent les services officiels : aucune donnée de circulation n’est simulée.</div>
+<div class="link-grid"><a class="link-tile" href="https://www.bison-fute.gouv.fr/" target="_blank" rel="noopener"><span><strong>Bison Futé</strong><small>Conditions de circulation et prévisions</small></span><b>↗</b></a><a class="link-tile" href="https://www.dir.mediterranee.developpement-durable.gouv.fr/" target="_blank" rel="noopener"><span><strong>DIR Méditerranée</strong><small>Réseau routier national et événements</small></span><b>↗</b></a><a class="link-tile" href="https://www.bouches-du-rhone.gouv.fr/" target="_blank" rel="noopener"><span><strong>Préfecture 13</strong><small>Restrictions et informations départementales</small></span><b>↗</b></a><a class="link-tile" href="https://www.autoroutes.fr/" target="_blank" rel="noopener"><span><strong>Autoroutes</strong><small>Informations des exploitants autoroutiers</small></span><b>↗</b></a></div>
+</section>
+
+<section id="newsView" class="view">
+<button class="back" data-page="home">← Retour à l’accueil</button><div class="view-title"><span class="menu-icon">🚨</span><div><h2>Alertes & actualités</h2><p>Publications officielles de la Préfecture des Bouches-du-Rhône</p></div></div>
+<p class="feed-state" id="prefState">Récupération des publications officielles…</p><div class="section-heading"><h2>Dernières publications</h2><p id="prefUpdated">Chargement…</p></div><div class="feed-grid" id="prefNews"></div><div class="empty" id="prefEmpty" hidden>Aucune publication récente remontée par le flux RSS.</div>
+<div class="link-grid" style="margin-top:14px"><a class="link-tile" href="https://www.bouches-du-rhone.gouv.fr/Actualites" target="_blank" rel="noopener"><span><strong>Actualités de la Préfecture</strong><small>Communiqués et informations</small></span><b>↗</b></a><a class="link-tile" href="https://fr-alert.gouv.fr/" target="_blank" rel="noopener"><span><strong>FR-Alert</strong><small>Alertes d’urgence aux populations</small></span><b>↗</b></a></div>
+</section>
+
+<section id="installView" class="view">
+<button class="back" data-page="home">← Retour à l’accueil</button><div class="view-title"><span class="menu-icon">📲</span><div><h2>Installer Vigie 13</h2><p>Ajoutez l’application à l’écran d’accueil de votre téléphone</p></div></div>
+<div class="install-steps"><div class="install-step"><strong>Android · Chrome</strong><p>Ouvrez Vigie 13 dans Chrome, appuyez sur ⋮ puis « Installer l’application » ou « Ajouter à l’écran d’accueil » et confirmez.</p></div><div class="install-step"><strong>iPhone · Safari</strong><p>Ouvrez Vigie 13 dans Safari, appuyez sur le bouton Partager, choisissez « Sur l’écran d’accueil », puis « Ajouter ».</p></div><div class="install-step"><strong>Ordinateur</strong><p>Dans Chrome ou Edge, utilisez l’icône d’installation dans la barre d’adresse ou le menu du navigateur, puis confirmez.</p></div></div>
+<div style="margin-top:14px"><button class="refresh" id="installButton" disabled>Installer maintenant</button><p class="feed-state" id="installState">Si le bouton n’est pas disponible, suivez les étapes correspondant à votre appareil ci-dessus.</p></div>
+<div class="info-note">Vigie 13 est une application web installable (PWA). L’installation crée une icône sur l’écran d’accueil ; elle ne nécessite pas de passer par le Play Store ou l’App Store.</div>
+</section>
+</main>
+<nav class="bottom-nav" aria-label="Navigation rapide"><button data-page="home"><span>⌂</span>Accueil</button><button data-page="transport"><span>🚇</span>Transports</button><button data-page="weather"><span>🌦️</span>Météo</button><button data-page="roads"><span>🚗</span>Routes</button><button data-page="news"><span>🚨</span>Alertes</button></nav>
+<footer>Vigie 13 · Projet indépendant de veille locale. Les alertes d’urgence officielles restent celles des autorités.<br><span class="credits">Photos : <a href="https://commons.wikimedia.org/wiki/File:Marseille_vieux_port_pano.jpg" target="_blank" rel="noopener">Velvet — Vieux-Port</a> (CC BY-SA 4.0), <a href="https://commons.wikimedia.org/wiki/File:Calanque_Sormiou_Wikimedia_Commons.jpg" target="_blank" rel="noopener">Benh LIEU SONG — Sormiou</a> (CC BY-SA 3.0), <a href="https://commons.wikimedia.org/wiki/File:Fort_Saint-Jean_(Marseille).jpg" target="_blank" rel="noopener">Peter Elfelt — Fort Saint-Jean</a> (CC BY-SA 4.0), via Wikimedia Commons. </span></footer>
 <script>
-  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  const feedState=document.getElementById('feedState'),liveAlerts=document.getElementById('liveAlerts'),feedUpdated=document.getElementById('feedUpdated'),liveEmpty=document.getElementById('liveEmpty');
-
-  const fmtTime=new Intl.DateTimeFormat('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  function tickClock(){const now=new Date();document.getElementById('liveClock').textContent=fmtTime.format(now);document.getElementById('liveDate').textContent=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long'}).format(now)+' · Bouches-du-Rhône';}
-  tickClock();setInterval(tickClock,1000);
-  const themes=['azur','sunset','lagoon'];let themeIndex=0;
-  document.getElementById('themeSwitch').addEventListener('click',()=>{themeIndex=(themeIndex+1)%themes.length;document.body.dataset.theme=themes[themeIndex]==='azur'?'':themes[themeIndex];});
-
-  function updateTicker(){
-    const track=document.getElementById('tickerTrack');
-    const sources=[['#liveAlerts','Mobilité'],['#railAlerts','TER / SNCF'],['#prefNews','Préfecture']];
-    const entries=[];
-    for(const [selector,label] of sources){
-      document.querySelectorAll(selector+' .card h4').forEach(h=>entries.push({label,title:h.textContent.trim(),target:selector}));
-    }
-    if(!entries.length){
-      const messages=['Les flux de mobilité, TER et préfecture sont interrogés automatiquement.','Cliquez sur Actualiser pour relancer les sources.'];
-      track.innerHTML=messages.map(t=>'<span class="ticker-item">'+esc(t)+'</span>').join('');
-      return;
-    }
-    const html=entries.map(x=>'<a class="ticker-item" href="'+x.target+'"><b>'+esc(x.label)+'</b> · '+esc(x.title)+'</a>').join('');
-    track.innerHTML=html+html;
-  }
-  document.getElementById('tickerPause').addEventListener('click',()=>{
-    const ticker=document.getElementById('ticker'),button=document.getElementById('tickerPause');
-    ticker.classList.toggle('paused');button.textContent=ticker.classList.contains('paused')?'Reprendre':'Pause';
-  });
-  document.getElementById('refreshAll').addEventListener('click',async()=>{
-    const button=document.getElementById('refreshAll');button.disabled=true;button.textContent='Actualisation…';
-    await Promise.allSettled([loadRtmAlerts(),loadRailAlerts(),loadPrefectureNews(),loadWeather()]);
-    updateTicker();button.disabled=false;button.textContent='↻ Actualiser';
-  });
-
-  const weatherText={0:'Ciel dégagé',1:'Principalement dégagé',2:'Partiellement nuageux',3:'Couvert',45:'Brouillard',48:'Brouillard givrant',51:'Bruine légère',53:'Bruine modérée',55:'Bruine dense',61:'Pluie faible',63:'Pluie modérée',65:'Pluie forte',71:'Neige faible',73:'Neige modérée',75:'Neige forte',80:'Averses faibles',81:'Averses modérées',82:'Fortes averses',95:'Orage',96:'Orage et grêle',99:'Orage et grêle'};
-  const weatherEmoji={0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌦️',63:'🌧️',65:'🌧️',71:'🌨️',73:'❄️',75:'❄️',80:'🌦️',81:'🌧️',82:'🌧️',95:'⛈️',96:'⛈️',99:'⛈️'};
-  async function loadWeather(){try{const response=await fetch('/api/weather',{cache:'no-store'});if(!response.ok)throw new Error('HTTP '+response.status);const result=await response.json();if(!result.ok)throw new Error(result.message);const c=result.data.current,h=result.data.hourly;const code=Number(c.weather_code);const hourIndex=Math.max(0,h.time.findIndex(t=>t>=c.time));document.getElementById('weatherIcon').textContent=weatherEmoji[code]||'🌤️';document.getElementById('weatherTemp').textContent=Math.round(c.temperature_2m)+'°C';document.getElementById('weatherDesc').textContent=weatherText[code]||'Conditions météo actuelles';document.getElementById('feelsLike').textContent=Math.round(c.apparent_temperature)+'°C';document.getElementById('windSpeed').textContent=Math.round(c.wind_speed_10m)+' km/h';document.getElementById('humidity').textContent=Math.round(c.relative_humidity_2m)+' %';document.getElementById('rainChance').textContent=(h.precipitation_probability[hourIndex]??'—')+' %';document.getElementById('weatherUpdated').textContent='Mis à jour à '+fmtTime.format(new Date(result.fetchedAt));document.getElementById('weatherStat').textContent=Math.round(c.temperature_2m)+'°C';}catch(e){document.getElementById('weatherDesc').textContent='Météo momentanément indisponible';document.getElementById('weatherUpdated').textContent='Source indisponible';document.getElementById('weatherStat').textContent='—';}}
-
-
-
-  async function loadPrefectureNews(){
-    const state=document.getElementById('prefState'),list=document.getElementById('prefNews'),empty=document.getElementById('prefEmpty');
-    try{
-      const response=await fetch('/api/prefecture-news',{headers:{'Accept':'application/json'},cache:'no-store'});
-      if(!response.ok)throw new Error('HTTP '+response.status);
-      const data=await response.json();if(!data.ok)throw new Error(data.message||'Source indisponible');
-      state.classList.remove('error');state.textContent=data.count+' publication(s) récupérée(s) · '+data.source;
-      document.getElementById('prefUpdated').textContent='Mis à jour à '+new Intl.DateTimeFormat('fr-FR',{hour:'2-digit',minute:'2-digit'}).format(new Date(data.fetchedAt));
-      list.innerHTML=data.items.map(item=>'<article class="card" data-category="securite"><div class="card-head"><span class="tag">PRÉFECTURE · 13</span><span class="status live-data">PUBLICATION OFFICIELLE</span></div><h4>'+esc(item.title)+'</h4><p>'+esc((item.message||'').slice(0,230))+'</p><p class="alert-meta">'+esc(item.publishedAt||'Date non précisée')+'</p><a href="'+esc(item.url)+'" target="_blank" rel="noopener">Lire le communiqué ↗</a></article>').join('');
-      empty.style.display=data.count?'none':'block';updateTicker();
-    }catch(error){state.classList.add('error');state.textContent='Flux de la préfecture indisponible : '+error.message;document.getElementById('prefUpdated').textContent='Mise à jour indisponible';list.innerHTML='';empty.style.display='none';updateTicker();}
-  }
-
-  async function loadRailAlerts(){
-    const state=document.getElementById('railState'),list=document.getElementById('railAlerts'),empty=document.getElementById('railEmpty');
-    try{
-      const response=await fetch('/api/rail-alerts',{headers:{'Accept':'application/json'},cache:'no-store'});
-      if(!response.ok)throw new Error('HTTP '+response.status);
-      const data=await response.json();if(!data.ok)throw new Error(data.message||'Source indisponible');
-      state.classList.remove('error');state.textContent=data.count+' alerte(s) SNCF identifiée(s) pour le territoire · '+data.source;
-      document.getElementById('railUpdated').textContent='Mis à jour à '+new Intl.DateTimeFormat('fr-FR',{hour:'2-digit',minute:'2-digit'}).format(new Date(data.fetchedAt));
-      list.innerHTML=data.alerts.map(a=>{const msg=String(a.message||'');const summary=msg.length>220?msg.slice(0,217).replace(/\s+\S*$/,'')+'…':msg;const dates=[a.startValidity?'Début : '+a.startValidity:'',a.endValidity?'Fin : '+a.endValidity:''].filter(Boolean).join(' · ');return '<article class="card alert-card" data-category="transport"><div class="card-head"><span class="tag">TER / SNCF · BOUCHES-DU-RHÔNE</span><span class="status live-data">SOURCE EN DIRECT</span></div><h4>'+esc(a.title||'Information ferroviaire')+'</h4><p>'+esc(summary||'Consultez le détail de cette alerte sur la source SNCF.')+'</p>'+(dates?'<p class="alert-meta">'+esc(dates)+'</p>':'')+'<a href="https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/se-deplacer/info-trafic/perturbations" target="_blank" rel="noopener">Détails du trafic TER ↗</a></article>'}).join('');
-      empty.style.display=data.count?'none':'block';updateTicker();
-    }catch(error){state.classList.add('error');state.textContent='Flux SNCF indisponible : '+error.message;document.getElementById('railUpdated').textContent='Mise à jour indisponible';list.innerHTML='';empty.style.display='none';}
-  }
-
-  async function loadRtmAlerts(){
-    try{const response=await fetch('/api/rtm-alerts',{headers:{'Accept':'application/json'},cache:'no-store'});if(!response.ok)throw new Error('HTTP '+response.status);const data=await response.json();if(!data.ok)throw new Error(data.message||'Source indisponible');
-      feedState.classList.remove('error');feedState.textContent=data.count+' perturbation(s) active(s) · '+data.source;document.getElementById('transportCount').textContent=data.count;document.getElementById('updateStat').textContent=fmtTime.format(new Date(data.fetchedAt));
-      feedUpdated.textContent='Mis à jour à '+new Intl.DateTimeFormat('fr-FR',{hour:'2-digit',minute:'2-digit'}).format(new Date(data.fetchedAt));
-      liveAlerts.innerHTML=data.alerts.map(a=>{const severity=String(a.criticity||a.level||'').toLowerCase();const high=/high|major|critical|élev|fort|important/.test(severity);const full=String(a.message||'').trim();const summary=full.length>190?full.slice(0,187).replace(/\s+\S*$/,'')+'…':full;const details=[a.lines?'Lignes : '+a.lines:'',a.startValidity?'Début : '+a.startValidity:'',a.endValidity?'Fin prévue : '+a.endValidity:''].filter(Boolean).join(' · ');return '<article class="card alert-card '+(high?'high':'')+'" data-category="transport"><div class="card-head"><span class="tag">MOBILITÉ · '+esc(a.category||'TRANSPORT')+'</span><span class="status live-data">EN COURS</span></div><h4>'+esc(a.title||'Perturbation du réseau')+'</h4><p>'+esc(summary||'Une perturbation est signalée. Consultez la source pour obtenir les informations détaillées.')+'</p>'+(details?'<p class="alert-meta">'+esc(details)+'</p>':'')+'<a href="https://data.ampmetropole.fr/explore/dataset/ol-perturbation-la-mobilite/" target="_blank" rel="noopener">Plus d’informations ↗</a></article>'}).join('');liveEmpty.style.display=data.count?'none':'block';updateTicker();
-    }catch(error){feedState.classList.add('error');feedState.textContent='Flux de mobilité momentanément indisponible : '+error.message+'. Consultez directement la source officielle.';document.getElementById('transportCount').textContent='—';feedUpdated.textContent='Mise à jour indisponible';liveAlerts.innerHTML='';liveEmpty.style.display='none';updateTicker()}
-  }
-  loadRtmAlerts();loadRailAlerts();loadPrefectureNews();loadWeather();setTimeout(updateTicker,1200);setInterval(loadRtmAlerts,5*60*1000);setInterval(loadRailAlerts,2*60*1000);setInterval(loadPrefectureNews,15*60*1000);setInterval(loadWeather,10*60*1000);
-  document.getElementById('today').textContent=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date());
-  document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.filter;let n=0;document.querySelectorAll('#cards .card,#liveAlerts .card,#railAlerts .card,#prefNews .card').forEach(card=>{const show=f==='all'||card.dataset.category===f;card.style.display=show?'':'none';if(show)n++});const weather=document.getElementById('weatherPanel');if(weather){const show=f==='all'||f==='meteo';weather.style.display=show?'':'none';if(show)n++}document.getElementById('empty').style.display=n?'none':'block'}));
-  const ns=document.getElementById('notifyState');document.getElementById('notify').addEventListener('click',async()=>{if(!('Notification'in window)){ns.textContent='Ce navigateur ne prend pas en charge les notifications.';return}try{const p=await Notification.requestPermission();ns.textContent=p==='granted'?'Permission accordée. Le serveur d’envoi doit encore être configuré pour recevoir les alertes Vigie 13.':p==='denied'?'Permission refusée. Modifiez-la dans les réglages du navigateur.':'Permission non accordée.'}catch(e){ns.textContent='Impossible de demander la permission dans cet environnement.'}});
-  let deferred;const ib=document.getElementById('install');window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;ib.disabled=false});ib.addEventListener('click',async()=>{if(!deferred)return;deferred.prompt();await deferred.userChoice;deferred=null;ib.disabled=true});
-  if('serviceWorker'in navigator && location.protocol==='https:'){navigator.serviceWorker.register('/sw.js').catch(()=>{})}
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtTime=new Intl.DateTimeFormat('fr-FR',{hour:'2-digit',minute:'2-digit'});
+function clock(){ $('clock').textContent=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'}).format(new Date())+' · Marseille';}
+clock();setInterval(clock,30000);
+const pages=['home','transport','weather','roads','news','install'];
+function showPage(name){
+ if(!pages.includes(name))name='home';
+ pages.forEach(p=>{const el=$(p+'View');if(el)el.classList.toggle('active',p===name)});
+ window.scrollTo({top:0,behavior:'smooth'});
+ document.querySelectorAll('[data-page]').forEach(b=>{if(b.classList.contains('bottom-nav'))return;b.setAttribute('aria-current',b.dataset.page===name?'page':'false')});
+}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+document.querySelectorAll('[data-open]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showPage(a.dataset.open)}));
+let slideIndex=0;const slides=[...document.querySelectorAll('.slide')],dots=[...document.querySelectorAll('.dot')];
+function setSlide(n){slideIndex=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===slideIndex));dots.forEach((d,i)=>d.classList.toggle('active',i===slideIndex));}
+$('prevSlide').addEventListener('click',()=>setSlide(slideIndex-1));$('nextSlide').addEventListener('click',()=>setSlide(slideIndex+1));dots.forEach(d=>d.addEventListener('click',()=>setSlide(Number(d.dataset.slide))));
+let carouselTimer=setInterval(()=>setSlide(slideIndex+1),6500);
+$('hero').addEventListener('mouseenter',()=>clearInterval(carouselTimer));$('hero').addEventListener('mouseleave',()=>{clearInterval(carouselTimer);carouselTimer=setInterval(()=>setSlide(slideIndex+1),6500)});
+const weatherText={0:'Ciel dégagé',1:'Principalement dégagé',2:'Partiellement nuageux',3:'Couvert',45:'Brouillard',48:'Brouillard givrant',51:'Bruine légère',53:'Bruine modérée',55:'Bruine dense',61:'Pluie faible',63:'Pluie modérée',65:'Pluie forte',71:'Neige faible',73:'Neige modérée',75:'Neige forte',80:'Averses faibles',81:'Averses modérées',82:'Fortes averses',95:'Orage',96:'Orage et grêle',99:'Orage et grêle'};
+const weatherEmoji={0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌦️',63:'🌧️',65:'🌧️',71:'🌨️',73:'❄️',75:'❄️',80:'🌦️',81:'🌧️',82:'🌧️',95:'⛈️',96:'⛈️',99:'⛈️'};
+let tickerEntries=[];
+function updateTicker(){
+ const track=$('tickerTrack');
+ if(!tickerEntries.length){track.innerHTML='<span class="ticker-empty">Aucune nouvelle remontée pour le moment · Les sources sont interrogées automatiquement.</span>';return;}
+ const one=tickerEntries.map(x=>'<a class="ticker-item" href="#" data-jump="'+x.page+'"><b>'+esc(x.label)+'</b> · '+esc(x.title)+'</a>').join('');
+ track.innerHTML=one+one;
+ track.querySelectorAll('[data-jump]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showPage(a.dataset.jump)}));
+}
+function addTicker(label,title,page){tickerEntries.push({label,title,page});}
+let tickerPaused=false;
+$('tickerPause').addEventListener('click',()=>{tickerPaused=!tickerPaused;$('ticker').classList.toggle('paused',tickerPaused);$('tickerPause').textContent=tickerPaused?'Reprendre':'Pause'});
+function renderAlerts(list,alerts,kind){
+ if(!alerts.length){list.innerHTML='';return;}
+ list.innerHTML=alerts.map(a=>{
+  const msg=String(a.message||'').trim(),summary=msg.length>240?msg.slice(0,237).replace(/\s+\S*$/,'')+'…':msg;
+  const dates=[a.startValidity?'Début : '+a.startValidity:'',a.endValidity?'Fin : '+a.endValidity:''].filter(Boolean).join(' · ');
+  const label=kind==='rail'?'TER / SNCF':'MOBILITÉ';
+  return '<article class="card"><div class="card-head"><span class="tag">'+label+'</span><span class="pill">SOURCE EN DIRECT</span></div><h3>'+esc(a.title||'Information trafic')+'</h3><p>'+esc(summary||'Une information trafic est publiée. Consultez la source officielle pour le détail.')+'</p>'+(a.lines?'<p class="card-meta">Lignes : '+esc(a.lines)+'</p>':'')+(dates?'<p class="card-meta">'+esc(dates)+'</p>':'')+'<a href="'+(kind==='rail'?'https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/se-deplacer/info-trafic':'https://data.ampmetropole.fr/explore/dataset/ol-perturbation-la-mobilite/')+'" target="_blank" rel="noopener">Consulter la source ↗</a></article>';
+ }).join('');
+}
+async function loadRtm(){
+ const state=$('feedState'),list=$('liveAlerts');
+ try{
+  const r=await fetch('/api/rtm-alerts',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);
+  const d=await r.json();if(!d.ok)throw new Error(d.message||'Source indisponible');
+  state.classList.remove('error');state.textContent=d.count+' perturbation(s) active(s) · '+d.source;
+  $('transportCount').textContent=d.count;$('transportStatus').textContent='Flux mobilité · vérifié '+fmtTime.format(new Date(d.fetchedAt));
+  $('feedUpdated').textContent='Mis à jour à '+fmtTime.format(new Date(d.fetchedAt));
+  renderAlerts(list,d.alerts||[],'mobility');$('liveEmpty').hidden=!!d.count;
+  (d.alerts||[]).slice(0,8).forEach(a=>addTicker('Mobilité',a.title||'Perturbation du réseau','transport'));
+  $('syncStat').textContent=fmtTime.format(new Date(d.fetchedAt));$('syncStatus').textContent='Dernière source mobilité';
+ }catch(e){state.classList.add('error');state.textContent='Flux mobilité indisponible : '+e.message;$('transportCount').textContent='—';$('transportStatus').textContent='Source momentanément indisponible';$('liveEmpty').hidden=false;}
+}
+async function loadRail(){
+ const state=$('railState'),list=$('railAlerts');
+ try{
+  const r=await fetch('/api/rail-alerts',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);
+  const d=await r.json();if(!d.ok)throw new Error(d.message||'Source indisponible');
+  state.classList.remove('error');state.textContent=d.count+' alerte(s) SNCF identifiée(s) · '+d.source;
+  $('railUpdated').textContent='Mis à jour à '+fmtTime.format(new Date(d.fetchedAt));
+  renderAlerts(list,d.alerts||[],'rail');$('railEmpty').hidden=!!d.count;
+  (d.alerts||[]).slice(0,6).forEach(a=>addTicker('TER / SNCF',a.title||'Information ferroviaire','transport'));
+ }catch(e){state.classList.add('error');state.textContent='Flux SNCF indisponible : '+e.message;$('railUpdated').textContent='Mise à jour indisponible';$('railEmpty').hidden=false;}
+}
+async function loadWeather(){
+ try{
+  const r=await fetch('/api/weather',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);
+  const d=await r.json();if(!d.ok)throw new Error(d.message||'Source indisponible');
+  const c=d.data.current,h=d.data.hourly,code=Number(c.weather_code);
+  const ix=Math.max(0,h.time.findIndex(t=>t>=c.time));
+  $('weatherIcon').textContent=weatherEmoji[code]||'🌤️';$('weatherTemp').textContent=Math.round(c.temperature_2m)+'°C';$('weatherDesc').textContent=weatherText[code]||'Conditions actuelles';
+  $('feelsLike').textContent=Math.round(c.apparent_temperature)+'°C';$('windSpeed').textContent=Math.round(c.wind_speed_10m)+' km/h';$('humidity').textContent=Math.round(c.relative_humidity_2m)+' %';$('rainChance').textContent=(h.precipitation_probability[ix]??'—')+' %';
+  $('weatherUpdated').textContent='Open-Meteo · actualisé à '+fmtTime.format(new Date(d.fetchedAt));$('weatherStat').textContent=Math.round(c.temperature_2m)+'°C';$('weatherStatus').textContent=weatherText[code]||'Conditions actuelles';
+ }catch(e){$('weatherDesc').textContent='Météo momentanément indisponible';$('weatherUpdated').textContent='Source indisponible';$('weatherStat').textContent='—';$('weatherStatus').textContent='Réessayer ultérieurement';}
+}
+async function loadPrefecture(){
+ const state=$('prefState'),list=$('prefNews');
+ try{
+  const r=await fetch('/api/prefecture-news',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);
+  const d=await r.json();if(!d.ok)throw new Error(d.message||'Source indisponible');
+  state.classList.remove('error');state.textContent=d.count+' publication(s) récupérée(s) · '+d.source;
+  $('prefUpdated').textContent='Mis à jour à '+fmtTime.format(new Date(d.fetchedAt));
+  list.innerHTML=(d.items||[]).map(x=>'<article class="card"><div class="card-head"><span class="tag">PRÉFECTURE · 13</span><span class="pill">OFFICIEL</span></div><h3>'+esc(x.title)+'</h3><p>'+esc((x.message||'Publication officielle de la Préfecture.').slice(0,260))+'</p><p class="card-meta">'+esc(x.publishedAt||'Date non précisée')+'</p><a href="'+esc(x.url)+'" target="_blank" rel="noopener">Lire le communiqué ↗</a></article>').join('');
+  $('prefEmpty').hidden=!!d.count;(d.items||[]).slice(0,8).forEach(x=>addTicker('Préfecture',x.title,'news'));
+ }catch(e){state.classList.add('error');state.textContent='Flux de la Préfecture indisponible : '+e.message;$('prefUpdated').textContent='Mise à jour indisponible';$('prefEmpty').hidden=false;}
+}
+let loading=false;
+async function refreshAll(){
+ if(loading)return;loading=true;$('refreshAll').disabled=true;$('refreshAll').textContent='Actualisation…';
+ tickerEntries=[];await Promise.allSettled([loadRtm(),loadRail(),loadWeather(),loadPrefecture()]);updateTicker();
+ $('refreshAll').disabled=false;$('refreshAll').textContent='↻ Actualiser';loading=false;
+}
+$('refreshAll').addEventListener('click',refreshAll);
+refreshAll();setInterval(refreshAll,5*60*1000);
+let installPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('installButton').disabled=false;$('installState').textContent='Installation disponible : appuyez sur le bouton ci-dessus.'});
+$('installButton').addEventListener('click',async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$('installButton').disabled=true;$('installState').textContent='Si l’installation a été confirmée, Vigie 13 est ajoutée à votre écran d’accueil.'});
+if('serviceWorker'in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('/sw.js').catch(()=>{});}
+})();
 </script>
-</body></html>
+</body>
+</html>
