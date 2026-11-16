@@ -28,9 +28,9 @@ function normalize(record) {
     criticity: String(first(f.criticity, f.level, f.severity, "")),
     level: String(first(f.level, f.criticity, "")),
     lines: Array.isArray(lines) ? lines.join(", ") : String(lines || ""),
-    startValidity: first(f.startValidity, f.start_validity, f.start_date, null),
-    endValidity: first(f.endValidity, f.end_validity, f.end_date, null),
-    updateDate: first(f.updateDate, f.updated_at, f.updatedAt, null)
+    startValidity: first(f.startValidity, f.startvalidity, f.start_validity, f.start_date, null),
+    endValidity: first(f.endfunctionalvalidity, f.endValidity, f.endvalidity, f.end_validity, f.end_date, null),
+    updateDate: first(f.updateDate, f.updatedate, f.updated_at, f.updatedAt, null)
   };
 }
 
